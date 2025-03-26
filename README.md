@@ -34,10 +34,7 @@ A modern web application that verifies SSL certificates on the blockchain and en
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/blockchain-sslcert.git
-cd blockchain-sslcert
-```
+
 
 2. Install dependencies:
 ```bash
