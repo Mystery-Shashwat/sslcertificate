@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL Certificate Verification on Blockchain</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <h1>
+                <i class="fas fa-shield-alt me-2"></i>
+                SSL Certificate Verification
+                <span class="d-block text-primary mt-2" style="font-size: 1.5rem; font-weight: 500;">on Blockchain</span>
+            </h1>
+            <p class="text-secondary" style="max-width: 600px; margin: 0 auto;">
+                Secure, transparent, and verifiable SSL certificate verification powered by blockchain technology
+            </p>
+            <div class="mt-4">
+                <span class="badge bg-primary me-2">
+                    <i class="fas fa-lock me-1"></i>Secure
+                </span>
+                <span class="badge bg-success me-2">
+                    <i class="fas fa-check-circle me-1"></i>Verified
+                </span>
+                <span class="badge bg-info">
+                    <i class="fas fa-link me-1"></i>Blockchain-Powered
+                </span>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Certificate Verification Section -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h3><i class="fas fa-certificate me-2"></i>Certificate Verification</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="domainName" class="form-label">
+                                <i class="fas fa-globe me-2"></i>Domain Name
+                            </label>
+                            <input type="text" class="form-control" id="domainName" placeholder="e.g., example.com">
+                        </div>
+                        <div class="mb-4">
+                            <label for="certificateFile" class="form-label">
+                                <i class="fas fa-file-certificate me-2"></i>SSL Certificate
+                            </label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="certificateFile" accept=".pem,.crt">
+                                <button class="btn" type="button" onclick="document.getElementById('certificateFile').click()">
+                                    <i class="fas fa-upload"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="verifyCertificate()">
+                            <i class="fas fa-check-circle me-2"></i>Verify Certificate
+                        </button>
+                        <div id="verificationStatus" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IPFS Content Signing Section -->
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h3><i class="fas fa-signature me-2"></i>IPFS Content Signing</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="content" class="form-label">
+                                <i class="fas fa-pen me-2"></i>Content to Sign
+                            </label>
+                            <textarea class="form-control" id="content" rows="4" placeholder="Enter content to sign and upload to IPFS"></textarea>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="signAndUpload()">
+                            <i class="fas fa-upload me-2"></i>Sign & Upload to IPFS
+                        </button>
+                        <div id="ipfsStatus" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification Results -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-list-check me-2"></i>Verification Results</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="results" class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th><i class="fas fa-globe me-2"></i>Domain Name</th>
+                                        <th><i class="fas fa-wallet me-2"></i>Blockchain Address</th>
+                                        <th><i class="fas fa-check-circle me-2"></i>Verification Status</th>
+                                        <th><i class="fas fa-hashtag me-2"></i>IPFS Content</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="loading mb-4"></div>
+                    <h4 id="loadingMessage" class="mb-0">Processing...</h4>
+                    <p class="text-secondary mt-2">Please wait while we verify your request</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
